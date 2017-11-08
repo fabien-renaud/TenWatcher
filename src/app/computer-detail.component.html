@@ -1,0 +1,8 @@
+<div *ngIf="computer">
+  <h2>Selected computer : {{ computer.name }}</h2>
+  <div><label>mac address: </label>{{computer.mac}}</div>
+  <div>
+      <label>name: </label>
+      <input [(ngModel)]="computer.name" placeholder="name"/>
+  </div>
+</div>

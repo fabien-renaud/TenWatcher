@@ -1,0 +1,49 @@
+h1 {
+  background: #825244;
+  color: #FFF;
+  margin: 0;
+  padding-left: 20px;
+  line-height: 50px;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+.computers {
+  margin: 0;
+  height: calc(100vh - 50px);
+  width: 200px;
+  border-right: solid 2px #825244;
+  float: left;
+}
+
+.computers li {
+  cursor: pointer;
+  padding: 10px 20px;
+}
+
+.computers li:nth-child(even) {
+  background: #e6d9d5;
+}
+
+.computers li:hover {
+  background: #ccb7b1;
+}
+
+.selected {
+  background: #bb9e95 !important;
+}
+
+.computers li.selected:hover {
+  background: #bb9e95 !important;
+}
+
+.cmac {
+  color: #555;
+}
+
+#contain {
+  padding-left: 220px;
+}

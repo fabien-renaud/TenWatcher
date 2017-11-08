@@ -1,7 +1,12 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{title}}!
-  </h1>
-  <p>Coming soon : all datas from TenSystem</p>
+<h1>{{title}}</h1>
+<ul class="computers">
+  <li *ngFor="let computer of computers" (click)="onSelect(computer)" [class.selected]="computer === selectedComputer">
+    <span class="cname" *ngIf="!computer.editing" (dblclick)="onDblClick(computer)">{{computer.name}}</span>
+    <input class="cname" *ngIf="computer.editing" (blur)="doneEditing(computer)" [(ngModel)]="computer.name" />
+    <span class="cmac">{{computer.mac}}</span>
+  </li>
+</ul>
+
+<div id="contain">
+  <computer-detail [computer]="selectedComputer"></computer-detail>
 </div>
