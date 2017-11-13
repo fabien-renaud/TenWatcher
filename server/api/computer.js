@@ -5,9 +5,15 @@ const Data = mongoose.model('Data');
 const Computer = mongoose.model('Computer');
 
 router.get('/', (req, res) => {
-    Computer.find().exec(function(err, computer) {
-        if (!computer) { return res.sendStatus(404); }
-        return res.json(computer);
+    Computer.find().exec(function(err, computers) {
+        if (!computers) { return res.sendStatus(404); }
+
+        var result = [];
+        computers.forEach(function(computer) {
+            let c = '{"name":"'+computer.name+'", "mac":"'+computer._id+'", "ip":"'+computer.ip+'"}';
+            result.push(JSON.parse(c));
+        });
+        return res.json(result);
     });
 });
 

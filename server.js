@@ -106,6 +106,7 @@ client.on('message', function (topic, message) {
         let computerdb = new Computer();
         computerdb.name = data.mac;
         computerdb._id = data.mac;
+        computerdb.ip = data.ip;
 
         computerdb.save();
       }

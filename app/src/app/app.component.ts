@@ -1,5 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Computer } from './computer';
+import { Data } from './data';
+
+import { DataService } from './services/data.service';
+import { ComputerService } from './services/computer.service';
 
 @Component({
   selector: 'app-root',
@@ -7,12 +11,35 @@ import { Computer } from './computer';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'TenWatcher';
-  computers = COMPUTERS;
+  computers: Computer[];
   selectedComputer: Computer;
+  dataComputer: Data;
+
+  constructor(private dataService: DataService, private computerService: ComputerService) { }
+
+  ngOnInit() {
+    this.getComputers();
+  }
+
+  getComputers() {
+    this.computerService.getComputers().subscribe((res) => {
+      this.computers = res;
+    });
+  }
+
+  // updateComputer(computer) {
+  //   this.computerService.updateComputer(name).subscribe((res) => {
+  //     this.computers = res;
+  //   });
+  // }
 
   onSelect(computer: Computer): void {
+    this.dataService.getDatas(computer.mac).subscribe((res) => {
+      var datas:Data = this.dataService.prepareDatas(res);
+      this.dataComputer = datas;
+    })
     this.selectedComputer = computer;
   }
 
@@ -24,12 +51,3 @@ export class AppComponent {
     computer.editing = false;
   }
 }
-
-const COMPUTERS: Computer[] = [
-  { name: 'Ordi 1', mac: 'aa.aa.aa.aa.aa.aa', ip: '192.168.1.10', editing: false },
-  { name: 'Ordi 2', mac: 'aa.aa.aa.aa.aa.bb', ip: '192.168.1.10', editing: false },
-  { name: 'Ordi 3', mac: 'aa.aa.aa.aa.aa.cc', ip: '192.168.1.10', editing: false },
-  { name: 'Ordi 4', mac: 'aa.aa.aa.aa.aa.dd', ip: '192.168.1.10', editing: false },
-  { name: 'Ordi 5', mac: 'aa.aa.aa.aa.aa.ee', ip: '192.168.1.10', editing: false },
-  { name: 'Ordi 6', mac: 'aa.aa.aa.aa.aa.ff', ip: '192.168.1.10', editing: false }
-];

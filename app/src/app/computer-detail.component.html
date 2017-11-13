@@ -1,9 +1,18 @@
-<div *ngIf="computer">
-  <h2>Selected computer : {{ computer.name }}</h2>
+<div *ngIf="computer && data">
+  <h2 (click)="test()">Selected computer : {{ computer.name }}</h2>
   <div><label>mac address: </label>{{computer.mac}}</div>
   <div><label>ip address: </label>{{computer.ip}}</div>
 
+  <script src="../../node_modules/chart.js/src/chart.js"></script>
   <div class="computer-detail">
-      <span>No data from selected computer</span>
+      <canvas baseChart class="chart"
+          width="500px" height="700"
+          [datasets]="data.datasets"
+          [labels]="data.labels"
+          [colors]="chartColors"
+          [options]="chartOptions"
+          [chartType]="'line'"></canvas>
+      <!-- <div *ngIf="!data.datasets[0]?.length; else chart">No data from selected computer</div>
+      <ng-template #chart></ng-template> -->
   </div>
 </div>
