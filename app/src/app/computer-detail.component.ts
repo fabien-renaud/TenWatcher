@@ -34,29 +34,15 @@ export class ComputerDetailComponent {
 
     chartOptions: any = {
         responsive: true,
-        maintainAspectRatio: false,
+        maintainAspectRatio: true,
         scales: {
           xAxes: [{
-            // bounds: {
-            //   ticks: {
-            //     min: new Date(),
-            //     max: new Date()
-            //   }
-            // },
-            offset: true,
-            type: 'time',
-            ticks: {
-              autostick: true,
-              autoStickPading: 10,
-              labelOffset: 10
-            },
-            time: {
-              unit: 'second',
-              displayFormats: 'DD MMM YYYY - h:mm:ss',
-              stepSize: 300
+            min: 0,
+            max: 10,
+            scrollbar: {
+              enabled:true
             }
           }],
-          scrollbar: { enabled:true }
         }
     };
 }
