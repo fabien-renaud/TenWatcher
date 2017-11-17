@@ -2,8 +2,8 @@
   <h2>Selected computer : {{ computer.name }}</h2>
   <div><label>mac address: </label>{{computer.mac}}</div>
   <div><label>ip address: </label>{{computer.ip}}</div>
+  <!-- <div id="slider"></div> -->
 
-  <script src="../../node_modules/chart.js/src/chart.js"></script>
   <div class="computer-detail">
       <canvas *ngIf="data.datasets[0].data.length>0; else noData" baseChart class="chart"
           width="1400" height="700"

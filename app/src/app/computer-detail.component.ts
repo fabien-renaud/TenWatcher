@@ -33,16 +33,26 @@ export class ComputerDetailComponent {
     }];
 
     chartOptions: any = {
-        responsive: true,
+        responsive: false,
         maintainAspectRatio: true,
         scales: {
           xAxes: [{
-            min: 0,
-            max: 10,
-            scrollbar: {
-              enabled:true
+            type: 'time',
+            time: {
+              min: new Date(2017, 10, 13, 3, 29, 0),
+              max: new Date(2017, 10, 13, 3, 29, 36),
+              unit: 'second',
+              displayFormats: 'DD MMM YYYY - h:mm:ss',
+              stepSize: 300
             }
-          }],
+          }]
         }
     };
+
+    // changeDate() {
+    //   let lastestValue = new Date(this.data.labels[this.data.labels.length-1]);
+    //   this.chartOptions.scales.xAxes[0].time.min = lastestValue;
+    //   this.chartOptions.scales.xAxes[0].time.max = lastestValue;
+    //   this.chartOptions = Object.assign({}, this.chartOptions);
+    // }
 }
